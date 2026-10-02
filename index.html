@@ -1,389 +1,342 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Teste dos Dons Espirituais | IPI O Caminho</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Teste dos Dons Espirituais · IPI O Caminho</title>
+<meta name="description" content="Questionário dos Dons Espirituais (Christian A. Schwarz) — O Caminho do Servo, IPI O Caminho, Arapongas.">
+<meta name="theme-color" content="#143024">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="icone-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#143024">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background: #f6f8f5; -webkit-tap-highlight-color: transparent; }
-    .font-brand { font-family: 'Cinzel', serif; }
-    :root { --green: #173627; --orange: #e06d10; }
-    .bg-green { background-color: var(--green); }
-    .text-green { color: var(--green); }
-    .border-green { border-color: var(--green); }
-    .bg-orange { background-color: var(--orange); }
-    .text-orange { color: var(--orange); }
-    .border-orange { border-color: var(--orange) !important; }
-    .progress-bar { transition: width .35s ease; }
-    @media print {
-      header, #screen-intro, #screen-questions, .no-print { display: none !important; }
-      #screen-results { display: block !important; }
-    }
-  </style>
+<meta property="og:title" content="Teste dos Dons Espirituais — IPI O Caminho">
+<meta property="og:description" content="180 afirmações, 30 dons bíblicos. Descubra seus Dons Manifestos e Latentes.">
+<meta property="og:image" content="logo-horizontal.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --verde:#143024; --verde-2:#1d4733; --verde-3:#2f6b4c; --verde-luz:#8fd2ae;
+    --laranja:#e06d10; --ouro:#f0a93b;
+    --fundo:#f5f6f3; --cartao:#fff; --texto:#15201a; --suave:#5f7066; --linha:#e5eae5;
+    --sombra:0 1px 2px rgba(10,30,20,.05), 0 12px 32px rgba(10,30,20,.09);
+    --sombra-f:0 18px 50px rgba(10,30,20,.16);
+    --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--fundo:#0d1411;--cartao:#141d18;--texto:#e9f1eb;--suave:#9db0a4;--linha:#22302a;
+          --sombra:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.35);--sombra-f:0 18px 50px rgba(0,0,0,.5)}
+  }
+  *{box-sizing:border-box} html,body{margin:0;padding:0}
+  body{background:var(--fundo);color:var(--texto);font:16px/1.6 "Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.serif{font-family:var(--serif);font-weight:700;letter-spacing:-.01em}
+  a{color:var(--laranja)}
+  /* ---------- cabeçalho ---------- */
+  header{position:sticky;top:0;z-index:40;background:rgba(20,48,36,.96);backdrop-filter:saturate(1.3) blur(8px);color:#fff;border-bottom:3px solid var(--laranja)}
+  .topo{max-width:980px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:12px}
+  .selo{background:#fff;border-radius:9px;padding:3px;height:42px;width:36px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+  .selo img{height:100%;width:auto;display:block}
+  .topo h1{font-size:15px;margin:0;color:var(--ouro);letter-spacing:.08em}
+  .topo p{margin:0;font-size:11.5px;color:#c7ddcf;font-family:"Inter",sans-serif}
+  .etapa{margin-left:auto;font-size:11.5px;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.16);padding:5px 12px;border-radius:999px;white-space:nowrap}
+  /* ---------- hero ---------- */
+  .hero{background:
+      radial-gradient(900px 460px at 50% -20%, rgba(143,210,174,.2), transparent 62%),
+      linear-gradient(170deg,var(--verde) 0%,var(--verde-2) 58%,#17382a 100%);
+    color:#fff;padding:54px 16px 86px;text-align:center;position:relative;overflow:hidden;
+    border-bottom:1px solid rgba(255,255,255,.08)}
+  .chamada{display:inline-block;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ouro);border:1px solid rgba(240,169,59,.4);border-radius:999px;padding:6px 16px;margin-bottom:20px}
+  .hero h2{font-size:clamp(30px,6.4vw,46px);line-height:1.08;margin:0 0 12px;color:#fff}
+  .hero h2 em{font-style:normal;color:var(--ouro)}
+  .hero p{max-width:620px;margin:0 auto;color:#cfe3d6;font-size:16px}
+  .pilulas{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:24px}
+  .pilula{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:9px 18px;font-size:14px;display:flex;align-items:center;gap:8px}
+  .pilula b{font-size:16px;color:#fff;font-family:var(--serif)}
+  .pilula span{color:#bcd6c6}
+  /* ---------- layout ---------- */
+  main{max-width:980px;margin:0 auto;padding:0 16px 56px}
+  .solto{max-width:720px;margin:-52px auto 0;position:relative;z-index:2}
+  .cartao{background:var(--cartao);border:1px solid var(--linha);border-radius:22px;box-shadow:var(--sombra);padding:24px}
+  .cartao.destaque{box-shadow:var(--sombra-f)}
+  @media(min-width:640px){.cartao{padding:32px}}
+  .mt{margin-top:22px}
+  h2.titulo{font-size:clamp(24px,4.6vw,32px);margin:0 0 8px}
+  .sub{color:var(--suave);margin:0 0 20px}
+  .grade{display:grid;gap:14px}
+  @media(min-width:640px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}}
+  /* ---------- formulário ---------- */
+  label{display:block;font-size:12.5px;font-weight:600;letter-spacing:.02em;text-transform:uppercase;color:var(--suave);margin:0 0 7px}
+  input,select{width:100%;padding:14px 15px;border:1.5px solid var(--linha);border-radius:14px;background:var(--cartao);color:var(--texto);font:inherit;font-size:16px;transition:border-color .15s,box-shadow .15s}
+  input:hover,select:hover{border-color:#cfd9d1}
+  input:focus,select:focus{outline:0;border-color:var(--verde-3);box-shadow:0 0 0 4px rgba(47,107,76,.16)}
+  select{appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%235f7066' stroke-width='2'><path d='M5 8l5 5 5-5'/></svg>");background-repeat:no-repeat;background-position:right 12px center;padding-right:40px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:17px 22px;border:0;border-radius:15px;
+    background:linear-gradient(180deg,#1d4733,#143024);color:#fff;font-size:17px;font-weight:700;cursor:pointer;
+    box-shadow:0 10px 24px rgba(20,48,36,.28);transition:transform .07s,box-shadow .2s,filter .2s;font-family:var(--serif)}
+  .btn:hover{filter:brightness(1.1);box-shadow:0 14px 30px rgba(20,48,36,.34)} .btn:active{transform:translateY(1px)}
+  .btn.laranja{background:linear-gradient(180deg,#f08320,#d9630c);box-shadow:0 10px 24px rgba(217,99,12,.3)}
+  .btn.sec{background:none;color:var(--texto);border:1.5px solid var(--linha);box-shadow:none;font-weight:600;font-size:15px;padding:12px 18px;width:auto;font-family:"Inter",sans-serif}
+  .btn.sec:hover{border-color:var(--verde-3);filter:none}
+  /* ---------- passos ---------- */
+  .passos{display:grid;gap:16px;margin-top:26px}
+  @media(min-width:640px){.passos{grid-template-columns:repeat(3,1fr)}}
+  .passo{display:flex;gap:12px;align-items:flex-start}
+  .passo b{flex:0 0 auto;width:30px;height:30px;border-radius:50%;background:rgba(47,107,76,.12);color:var(--verde-3);
+    display:flex;align-items:center;justify-content:center;font-size:14px;font-family:var(--serif)}
+  .passo p{margin:0;font-size:14px;color:var(--suave)}
+  .passo p b{all:unset;font-weight:700;color:var(--texto)}
+  .nota{display:flex;gap:10px;align-items:flex-start;margin-top:22px;padding:13px 15px;border-radius:14px;background:rgba(224,109,16,.08);border:1px solid rgba(224,109,16,.2);font-size:13.5px;color:var(--suave)}
+  /* ---------- perguntas ---------- */
+  .ctx{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+  .tag{font-size:12px;font-weight:600;color:var(--verde-3);background:rgba(47,107,76,.1);padding:5px 11px;border-radius:999px}
+  .barra{height:8px;background:var(--linha);border-radius:999px;overflow:hidden}
+  .barra i{display:block;height:100%;background:linear-gradient(90deg,var(--verde-3),var(--ouro));width:0;transition:width .3s cubic-bezier(.4,0,.2,1)}
+  .enunciado{font-size:14.5px;color:var(--suave);margin:18px 0 4px;font-weight:500}
+  .afirmacao{font-family:var(--serif);font-size:clamp(21px,4.4vw,27px);line-height:1.35;margin:0 0 22px;min-height:76px}
+  .ops{display:grid;gap:10px}
+  .op{display:flex;align-items:center;gap:14px;width:100%;padding:15px 17px;border:1.5px solid var(--linha);border-radius:15px;background:var(--cartao);color:var(--texto);font:inherit;font-size:16px;text-align:left;cursor:pointer;transition:.13s}
+  .op:hover{border-color:var(--verde-3);background:rgba(47,107,76,.05);transform:translateX(3px)}
+  .op.sel{border-color:var(--verde-3);background:rgba(47,107,76,.12)}
+  .op b{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:var(--fundo);border:1px solid var(--linha);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--suave);font-weight:600}
+  .op.sel b{background:var(--verde-3);color:#fff;border-color:var(--verde-3)}
+  .rodape-nav{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:20px}
+  .mini{font-size:12.5px;color:var(--suave)}
+  /* ---------- resultado ---------- */
+  .dom{border:1px solid var(--linha);border-radius:18px;padding:18px;background:var(--cartao)}
+  .dom h4{margin:0;font-size:18px;font-family:var(--serif)}
+  .dom .v{font-size:12.5px;color:var(--laranja);font-weight:600;margin-top:2px}
+  .dom p{margin:10px 0 0;font-size:14px;color:var(--suave)}
+  .pontos{display:flex;align-items:baseline;gap:7px;margin-top:12px}
+  .pontos b{font-size:26px;font-family:var(--serif)} .pontos span{font-size:12px;color:var(--suave)}
+  .mini-barra{height:7px;background:var(--linha);border-radius:999px;margin-top:8px;overflow:hidden}
+  .mini-barra i{display:block;height:100%;border-radius:999px}
+  .lista30{display:grid;gap:8px;margin-top:12px}
+  .linha30{display:grid;grid-template-columns:1fr 52px;align-items:center;gap:10px;font-size:13.5px}
+  .linha30 .t{display:flex;align-items:center;gap:10px;min-width:0}
+  .linha30 .t span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46%}
+  .linha30 .b{height:10px;border-radius:999px;background:var(--linha);overflow:hidden;flex:1}
+  .linha30 .b i{display:block;height:100%;background:linear-gradient(90deg,var(--verde-3),var(--verde-luz))}
+  .acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+  footer{max-width:980px;margin:0 auto;padding:10px 16px 44px;font-size:12.5px;color:var(--suave);text-align:center}
+  footer img{height:46px;width:auto;opacity:.85;margin-bottom:10px}
+  .oculto{display:none!important}
+  @media print{header,.acoes,.nao-imprime,.hero{display:none!important}
+    body{background:#fff}.cartao{box-shadow:none;border:0;padding:0}.solto{margin-top:0}.dom{break-inside:avoid}}
+</style>
 </head>
-<body class="min-h-screen flex flex-col text-slate-800">
-
-<!-- HEADER -->
-<header class="bg-green text-white border-b-4 sticky top-0 z-50 shadow-md" style="border-color:var(--orange)">
-  <div class="max-w-3xl mx-auto px-4 py-2.5 flex items-center justify-between">
-    <div class="flex items-center gap-3">
-      <span class="flex items-center justify-center bg-white rounded-md shadow-sm shrink-0" style="height:42px;width:36px;padding:3px">
-        <img src="logo-oficial-arco.png" alt="IPI O Caminho" style="height:100%;width:auto;display:block;object-fit:contain">
-      </span>
-      <div>
-        <h1 class="text-xs sm:text-sm font-bold tracking-wider text-amber-400 font-brand">O CAMINHO</h1>
-        <p class="text-[10px] sm:text-[11px] text-emerald-100">IPI Arapongas · Teste dos Dons Espirituais</p>
-      </div>
+<body>
+<header>
+  <div class="topo">
+    <span class="selo"><img src="logo-arco.png" alt="IPI O Caminho"></span>
+    <div>
+      <h1>O CAMINHO</h1>
+      <p>IPI Arapongas · Teste dos Dons Espirituais</p>
     </div>
-    <span id="header-step" class="text-[11px] bg-emerald-950/70 text-emerald-200 border border-emerald-700/50 px-2.5 py-1 rounded-full font-semibold">O Caminho do Servo</span>
+    <span class="etapa" id="etapa">O Caminho do Servo</span>
   </div>
 </header>
 
-<main class="flex-1 max-w-3xl w-full mx-auto p-4 sm:p-6">
-
-  <!-- TELA 1: INTRO -->
-  <section id="screen-intro" class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-8">
-    <div class="text-center max-w-xl mx-auto mb-6">
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-2">Descubra os Seus Dons Espirituais</h2>
-      <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-        Questionário oficial de <strong>Christian A. Schwarz</strong> com <strong>180 afirmações</strong> distribuídas em 6 dimensões de avaliação vocacional — identificando com fidelidade matemática seus
-        <span class="text-green font-bold">Dons Manifestos</span> (em pleno fruto) e
-        <span class="text-orange font-bold">Dons Latentes</span> (potencial vocacional e aspiração).
-      </p>
-    </div>
-    <div class="grid grid-cols-3 gap-3 mb-6 max-w-lg mx-auto text-center">
-      <div class="bg-slate-50 rounded-xl border border-slate-200 p-3">
-        <div class="text-xl font-extrabold text-green">180</div>
-        <div class="text-[10px] text-slate-600 font-semibold">Afirmações</div>
-      </div>
-      <div class="bg-slate-50 rounded-xl border border-slate-200 p-3">
-        <div class="text-xl font-extrabold text-green">30</div>
-        <div class="text-[10px] text-slate-600 font-semibold">Dons bíblicos</div>
-      </div>
-      <div class="bg-slate-50 rounded-xl border border-slate-200 p-3">
-        <div class="text-xl font-extrabold text-green">~15min</div>
-        <div class="text-[10px] text-slate-600 font-semibold">Estimado</div>
-      </div>
-    </div>
-    <div class="bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-200 max-w-lg mx-auto mb-6">
-      <h3 class="text-xs font-bold text-slate-700 uppercase tracking-wider mb-3">Sua Identificação</h3>
-      <div class="space-y-3">
-        <div>
-          <label class="block text-xs font-semibold text-slate-700 mb-1">Nome Completo *</label>
-          <input type="text" id="user-name" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none bg-white" placeholder="Seu nome completo">
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">WhatsApp</label>
-            <input type="tel" id="user-phone" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none bg-white" placeholder="(43) 99999-0000">
-          </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-700 mb-1">Rede / Ministério</label>
-            <select id="user-rede" class="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-amber-500 focus:outline-none bg-white">
-              <option>Conselho</option>
-              <option>01 IPI KIDS</option>
-              <option>02 RISE UP (Adolescentes)</option>
-              <option>03 NEXT (Jovens)</option>
-              <option>04 LEGADO (Homens)</option>
-              <option>05 ESTER (Mulheres)</option>
-              <option>06 ONE (Casais)</option>
-              <option>07 MELHOR IDADE</option>
-              <option>Louvor e Adoração</option>
-              <option>Diaconia / MASD</option>
-              <option>Células / Integração</option>
-              <option>Membro / Sem ministério fixo</option>
-            </select>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="max-w-lg mx-auto">
-      <button onclick="startTest()" class="w-full bg-green hover:opacity-90 text-white font-bold py-3.5 px-6 rounded-xl shadow-md transition flex items-center justify-center gap-2 text-sm sm:text-base border-b-2" style="border-color:var(--orange)">
-        <span>Iniciar o Teste dos Dons</span>
-        <svg class="w-5 h-5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-      </button>
-      <p class="text-center text-[11px] text-slate-500 mt-3">Suas respostas ficam salvas no navegador caso precise pausar.</p>
+<!-- ===== ABERTURA ===== -->
+<div id="tela-inicio">
+  <section class="hero">
+    <span class="chamada">O Caminho do Servo</span>
+    <h2>Descubra os dons<br>que Deus <em>já colocou</em> em você</h2>
+    <p>Questionário de Christian A. Schwarz, como está na apostila <b>O Caminho do Servo</b>. Ao final você recebe seus <b>Dons Manifestos</b> — o que já dá fruto hoje — e seus <b>Dons Latentes</b>, o potencial a desenvolver.</p>
+    <div class="pilulas">
+      <span class="pilula"><b>180</b><span>afirmações</span></span>
+      <span class="pilula"><b>30</b><span>dons bíblicos</span></span>
+      <span class="pilula"><b>~15</b><span>minutos</span></span>
     </div>
   </section>
 
-  <!-- TELA 2: QUESTIONÁRIO -->
-  <section id="screen-questions" class="hidden bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-7">
+  <main>
+    <div class="solto">
+      <section class="cartao destaque">
+        <h2 class="titulo">Vamos começar</h2>
+        <p class="sub">Preencha seus dados para que a liderança possa conversar com você sobre o resultado.</p>
+        <div class="grade g2" style="margin-bottom:16px">
+          <div><label for="nome">Nome completo *</label><input id="nome" autocomplete="name" placeholder="Seu nome completo"></div>
+          <div><label for="zap">WhatsApp</label><input id="zap" inputmode="tel" placeholder="(43) 99999-0000"></div>
+        </div>
+        <div style="margin-bottom:22px"><label for="rede">Rede / Ministério</label><select id="rede"></select></div>
+        <button class="btn" id="btn-iniciar">Iniciar o teste →</button>
 
-    <!-- PROGRESSO -->
-    <div class="mb-5">
-      <div class="flex justify-between items-center text-xs font-semibold text-slate-500 mb-1.5">
-        <span id="progress-text" class="font-bold text-slate-800">Pergunta 1 de 180</span>
-        <span id="progress-percent" class="text-orange font-bold">0%</span>
-      </div>
-      <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
-        <div id="progress-bar" class="h-full progress-bar rounded-full" style="width:0%;background:linear-gradient(90deg,#173627,#e06d10)"></div>
-      </div>
-      <div class="flex justify-between mt-1.5">
-        <span id="bloco-label" class="text-[10px] text-slate-500 font-medium">Bloco 1 de 6</span>
-        <span id="bloco-titulo" class="text-[10px] font-bold text-orange"></span>
-      </div>
+        <div class="passos">
+          <div class="passo"><b>1</b><p><b>Responda com sinceridade</b><br>Sobre como você é hoje, não como gostaria de ser.</p></div>
+          <div class="passo"><b>2</b><p><b>Seis partes de 30</b><br>Cada parte muda a pergunta e a escala. Leia o enunciado.</p></div>
+          <div class="passo"><b>3</b><p><b>Converse depois</b><br>Dom se confirma servindo, junto da sua rede.</p></div>
+        </div>
+        <div class="nota">🔒 <span>Suas respostas ficam salvas <b>neste navegador</b>. Pode fechar e voltar depois — nada é enviado automaticamente.</span></div>
+      </section>
     </div>
+  </main>
+</div>
 
-    <!-- CARD DA PERGUNTA -->
-    <div class="min-h-[280px] flex flex-col justify-between">
-      <div>
-        <div id="q-text" class="mb-3 leading-relaxed min-h-[70px]">Carregando...</div>
-        <p id="q-instrucao" class="text-[11px] text-slate-600 mb-4 bg-slate-50 p-2.5 rounded-lg border border-slate-200"></p>
+<main>
+  <!-- ===== TRANSIÇÃO DE PARTE ===== -->
+  <section id="tela-bloco" class="cartao oculto mt" style="text-align:center;max-width:720px;margin-left:auto;margin-right:auto">
+    <p class="tag" id="bl-num">Parte 1 de 6</p>
+    <h2 class="titulo" style="margin-top:16px" id="bl-titulo"></h2>
+    <p class="sub" id="bl-instrucao"></p>
+    <button class="btn" id="btn-bloco">Continuar →</button>
+  </section>
 
-        <!-- ESCALA 5 NÍVEIS DINÂMICA -->
-        <div id="options-container" class="grid grid-cols-1 sm:grid-cols-5 gap-2"></div>
-      </div>
-
-      <!-- BOTÕES -->
-      <div class="flex justify-between items-center pt-5 mt-5 border-t border-slate-100">
-        <button id="btn-prev" onclick="prevQuestion()" class="text-slate-500 hover:text-slate-800 text-xs font-bold px-3 py-2 rounded-lg transition invisible">← Voltar</button>
-        <button id="btn-next" onclick="nextQuestion()" disabled class="bg-green text-white font-bold text-xs sm:text-sm px-6 py-2.5 rounded-xl shadow transition opacity-50 cursor-not-allowed">Próxima →</button>
-      </div>
+  <!-- ===== PERGUNTAS ===== -->
+  <section id="tela-perguntas" class="cartao oculto mt" style="max-width:720px;margin-left:auto;margin-right:auto">
+    <div class="ctx"><span class="tag" id="q-bloco"></span><span class="mini" id="q-contador"></span></div>
+    <div class="barra"><i id="q-barra"></i></div>
+    <p class="enunciado" id="q-enunciado"></p>
+    <p class="afirmacao" id="q-texto"></p>
+    <div class="ops" id="q-opcoes"></div>
+    <div class="rodape-nav">
+      <button class="btn sec" id="btn-voltar">← Voltar</button>
+      <span class="mini">No computador: teclas <b>1</b> a <b>5</b></span>
     </div>
   </section>
 
-  <!-- TELA 3: RESULTADOS -->
-  <section id="screen-results" class="hidden space-y-5">
-    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-8 relative overflow-hidden">
-      <div class="absolute top-0 left-0 right-0 h-2" style="background:linear-gradient(90deg,#173627,#e06d10,#173627)"></div>
-      <div class="text-center mb-6">
-        <span class="inline-block px-3 py-1 bg-emerald-100 text-green rounded-full text-[10px] font-extrabold uppercase tracking-wider mb-2">Relatório Oficial de Dons</span>
-        <h2 class="text-xl sm:text-2xl font-bold text-slate-900 font-brand">Seus Dons Espirituais</h2>
-        <p class="text-xs text-slate-600 mt-1">Membro: <strong id="res-name"></strong> · <span id="res-rede"></span></p>
-      </div>
+  <!-- ===== RESULTADO ===== -->
+  <section id="tela-resultado" class="oculto mt">
+    <div class="cartao">
+      <h2 class="titulo">Resultado de <span id="r-nome"></span></h2>
+      <p class="sub" id="r-sub"></p>
 
-      <!-- QUADRO A -->
-      <div class="mb-8">
-        <div class="flex items-center gap-2 border-b-2 border-green pb-2 mb-3">
-          <span class="text-lg">🌟</span>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 uppercase tracking-wide">Quadro A — 5 Dons Manifestos</h3>
-        </div>
-        <p class="text-xs text-slate-500 mb-4">Dons com maior pontuação total nas 6 dimensões (0 a 24 pontos por dom):</p>
-        <div id="manifestos" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-      </div>
+      <h3 style="margin:26px 0 4px;font-size:21px">🌳 Dons Manifestos</h3>
+      <p class="mini">Os 5 maiores somando <b>as 6 dimensões</b> (0 a 24 pontos). É o que já aparece na sua vida.</p>
+      <div class="grade g2" id="r-manifestos" style="margin-top:14px"></div>
 
-      <!-- QUADRO B -->
-      <div class="mb-8">
-        <div class="flex items-center gap-2 border-b-2 border-orange pb-2 mb-3">
-          <span class="text-lg">🌱</span>
-          <h3 class="text-sm sm:text-base font-bold text-slate-900 uppercase tracking-wide">Quadro B — 5 Dons Latentes</h3>
-        </div>
-        <p class="text-xs text-slate-500 mb-4">Potencial vocacional medido pela soma das colunas de <em>vontade de envolvimento</em> e <em>disposição interna</em> (0 a 8 pontos):</p>
-        <div id="latentes" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
-      </div>
+      <h3 style="margin:32px 0 4px;font-size:21px">🌱 Dons Latentes</h3>
+      <p class="mini">Os 5 maiores somando <b>as dimensões 2, 4 e 6</b> (0 a 12 pontos) — vontade, condição e disposição. É o potencial a desenvolver.</p>
+      <div class="grade g2" id="r-latentes" style="margin-top:14px"></div>
 
-      <!-- GRÁFICO -->
-      <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 mb-6">
-        <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wide mb-2">📊 Mapeamento Geral dos 30 Dons (Total A)</h3>
-        <div class="h-64 sm:h-80"><canvas id="chartDons"></canvas></div>
-      </div>
+      <h3 style="margin:32px 0 4px;font-size:21px">Todos os 30 dons</h3>
+      <p class="mini">Pontuação total (0–24), do maior para o menor.</p>
+      <div class="lista30" id="r-todos"></div>
 
-      <!-- AÇÕES -->
-      <div class="flex flex-col sm:flex-row gap-3 no-print">
-        <button onclick="shareWhatsApp()" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3 px-5 rounded-xl shadow transition flex items-center justify-center gap-2 text-xs sm:text-sm">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          <span>Enviar à Liderança</span>
-        </button>
-        <button onclick="window.print()" class="bg-slate-800 hover:bg-slate-900 text-white font-bold py-3 px-5 rounded-xl shadow transition flex items-center justify-center gap-2 text-xs sm:text-sm">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
-          <span>Imprimir / Salvar PDF</span>
-        </button>
+      <div class="acoes nao-imprime">
+        <button class="btn sec" onclick="window.print()">🖨️ Salvar em PDF</button>
+        <button class="btn sec" id="btn-zap">💬 Enviar no WhatsApp</button>
+        <button class="btn sec" id="btn-copiar">📋 Copiar resumo</button>
+        <button class="btn sec" id="btn-json">⤓ Baixar respostas</button>
+        <button class="btn sec" id="btn-refazer">↻ Refazer o teste</button>
       </div>
+      <div class="nota" style="margin-top:24px">🧭 <span>O resultado é uma <b>bússola</b>, não um diagnóstico. Converse com a liderança da sua rede: dom se reconhece servindo, no corpo da igreja.</span></div>
     </div>
   </section>
-
 </main>
 
-<footer class="bg-white border-t border-slate-200 py-3 text-center text-[11px] text-slate-500">
-  Igreja Presbiteriana Independente — <strong>IPI O Caminho (Arapongas-PR)</strong> · <em>O Caminho do Servo</em> (Christian A. Schwarz)
+<footer>
+  <img src="logo-horizontal.png" alt="IPI O Caminho">
+  <p>Igreja Presbiteriana Independente de Arapongas<br>
+  Questionário de Christian A. Schwarz (<i>As Cores dos seus Dons</i>), conforme a apostila <i>O Caminho do Servo</i>.</p>
 </footer>
 
 <script>
-const BLOCOS_DATA = [{"id": 1, "titulo": "Sinto-me...", "subtitulo": "...realizado(a) ao...", "instrucao": "Se em alguma área abaixo você não tem nenhuma experiência, marque a coluna da direita.", "opcoes": [{"val": 4, "label": "Muitíssimo", "desc": "4 pts"}, {"val": 3, "label": "Muito", "desc": "3 pts"}, {"val": 2, "label": "Mais ou menos", "desc": "2 pts"}, {"val": 1, "label": "Pouco", "desc": "1 pt"}, {"val": 0, "label": "Nem um pouco", "desc": "0 pts"}]}, {"id": 2, "titulo": "Tenho...", "subtitulo": "...vontade de me envolver, mais do que fiz até agora, em...", "instrucao": "Avalie o quanto você gostaria de se envolver no futuro nesta área.", "opcoes": [{"val": 4, "label": "Enorme", "desc": "4 pts"}, {"val": 3, "label": "Grande", "desc": "3 pts"}, {"val": 2, "label": "Apenas alguma", "desc": "2 pts"}, {"val": 1, "label": "Pouca", "desc": "1 pt"}, {"val": 0, "label": "Nenhuma", "desc": "0 pts"}]}, {"id": 3, "titulo": "Tive a experiência de...", "subtitulo": "", "instrucao": "Avalie a frequência com que você já vivenciou estas situações na prática.", "opcoes": [{"val": 4, "label": "Muitas vezes", "desc": "4 pts"}, {"val": 3, "label": "Frequentemente", "desc": "3 pts"}, {"val": 2, "label": "De vez em quando", "desc": "2 pts"}, {"val": 1, "label": "Raramente", "desc": "1 pt"}, {"val": 0, "label": "Nunca", "desc": "0 pts"}]}, {"id": 4, "titulo": "As afirmações a seguir correspondem...", "subtitulo": "...à minha condição:", "instrucao": "Avalie o quanto cada declaração reflete sua realidade e convicções atuais.", "opcoes": [{"val": 4, "label": "Muito fortemente", "desc": "4 pts"}, {"val": 3, "label": "Fortemente", "desc": "3 pts"}, {"val": 2, "label": "Mais ou menos", "desc": "2 pts"}, {"val": 1, "label": "Muito pouco", "desc": "1 pt"}, {"val": 0, "label": "Não correspondem", "desc": "0 pts"}]}, {"id": 5, "titulo": "Para mim...", "subtitulo": "", "instrucao": "Avalie a facilidade ou dificuldade que você tem em realizar cada tarefa.", "opcoes": [{"val": 4, "label": "É muito fácil", "desc": "4 pts"}, {"val": 3, "label": "É fácil", "desc": "3 pts"}, {"val": 2, "label": "Nem fácil, nem difícil", "desc": "2 pts"}, {"val": 1, "label": "Relativamente difícil", "desc": "1 pt"}, {"val": 0, "label": "É bem difícil", "desc": "0 pts"}]}, {"id": 6, "titulo": "Eu estaria...", "subtitulo": "...disposto(a) a...", "instrucao": "Avalie a sua disposição interna para se dedicar e crescer nesta área.", "opcoes": [{"val": 4, "label": "Muitíssimo", "desc": "4 pts"}, {"val": 3, "label": "Muito", "desc": "3 pts"}, {"val": 2, "label": "Eventualmente", "desc": "2 pts"}, {"val": 1, "label": "Raramente", "desc": "1 pt"}, {"val": 0, "label": "De forma nenhuma", "desc": "0 pts"}]}];
-const PERGUNTAS = [{"num": 1, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...desenvolver planos detalhados para alcançar objetivos definidos."}, {"num": 2, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...me adaptar aos estilos de vida e costumes de pessoas de outras culturas."}, {"num": 3, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...viver sem cônjuge ou parentes. (Se você é casado(a) assinale a coluna da direita)"}, {"num": 4, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...analisar afirmações de outros cristãos para ver se tendem a levar a Igreja de Jesus para desvios."}, {"num": 5, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...falar de Jesus e de meu relacionamento com Ele para não-cristãos."}, {"num": 6, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...encorajar outras pessoas."}, {"num": 7, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...formular objetivos que parecem irreais para outras pessoas. E depois trabalhar de forma decidida para alcançá-los."}, {"num": 8, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...colocar, de forma generosa, o meu dinheiro e as minhas posses à disposição do Reino de Deus."}, {"num": 9, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...ajudar para que pessoas sejam libertas de opressões demoníacas."}, {"num": 10, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...orar regularmente pela cura de doentes."}, {"num": 11, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...colaborar na elaboração de materiais que tornem simples e interessante o aprendizado das pessoas."}, {"num": 12, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...orar em línguas."}, {"num": 13, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...ajudar pessoas na reflexão sobre a sua situação."}, {"num": 14, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...adaptar-me a um nível de vida bem humilde."}, {"num": 15, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...trabalhar no conserto e manutenção de coisas."}, {"num": 16, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...trabalhar nos bastidores, em surdina, para apoiar as pessoas que estão realizando um ministério público."}, {"num": 17, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...receber visitantes, mesmo quando chegam de surpresa; preparar refeições e oferecer uma boa acolhida para eles."}, {"num": 18, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...orar por uma hora ou mais."}, {"num": 19, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...tentar entender a oração em línguas de outras pessoas para perceber o que Deus quer nos dizer através dela."}, {"num": 20, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...gastar muito tempo no estudo de livros, procurando adquirir novos conhecimentos."}, {"num": 21, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...liderar pessoas, de tal forma que se engajem em um projeto que conduza a um objetivo comum."}, {"num": 22, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...mostrar uma atitude positiva em meio ao sofrimento."}, {"num": 23, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...preocupar-me com pessoas que estão à margem da sociedade."}, {"num": 24, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...orar por coisas que vão contra as leis da natureza."}, {"num": 25, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...engajar-me nos problemas de outras igrejas, procurando contribuir para soluções."}, {"num": 26, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...preocupar-me com o bem espiritual de outros cristãos e acompanhá-los por um tempo longo."}, {"num": 27, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...servir de canal por meio do qual Deus dá orientações claras em uma determinada situação."}, {"num": 28, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...aceitar serviços pequenos e aparentemente insignificantes na Igreja."}, {"num": 29, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...dar tudo de mim para desenvolver as minhas habilidades musicais."}, {"num": 30, "bloco": 1, "bloco_titulo": "Sinto-me capaz de...", "texto": "...expressar as minhas ideias e concepções por meio da arte (teatro, desenho, pantomima etc.)."}, {"num": 31, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Planejar projetos para a igreja, organizá-los e achar as pessoas para a sua implantação."}, {"num": 32, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Manter contatos com pessoas de outras culturas."}, {"num": 33, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Pensar se é a vontade de Deus que eu permaneça solteiro(a). (Se você é casado(a) assinale a coluna da direita)"}, {"num": 34, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Analisar as palavras de outros cristãos para verificar se estão em concordância com a Bíblia."}, {"num": 35, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Conversar sobre a fé em Jesus Cristo com outras pessoas."}, {"num": 36, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Acompanhar de perto pessoas nas suas necessidades."}, {"num": 37, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Contribuir para que 'pessoas com visão' colaborem mais na igreja."}, {"num": 38, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Entrar em contato com as pessoas e projetos que dependam da minha ajuda financeira."}, {"num": 39, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Ser usado por Deus na batalha contra poderes demoníacos."}, {"num": 40, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Servir como instrumento por meio do qual Deus dá cura sobrenatural."}, {"num": 41, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Gastar tempo em ensinar conhecimento e aptidões a outras pessoas."}, {"num": 42, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Romper a barreira do racional na comunhão com Deus e adorá-lo por meio de novas línguas."}, {"num": 43, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Ajudar pessoas ou organizações a acharem formas mais eficientes para alcançar os seus objetivos."}, {"num": 44, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Reduzir consideravelmente o meu padrão de vida."}, {"num": 45, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Fazer algo bem prático para Deus com as minhas mãos."}, {"num": 46, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Apoiar outros cristãos colocando os meus dons a serviço dos seus ministérios."}, {"num": 47, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Oferecer a pessoas estranhas um ambiente agradável na minha casa."}, {"num": 48, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Dedicar muito tempo à oração."}, {"num": 49, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Ser usado para interpretar a oração em línguas de outro cristão para uma língua entendida por todos."}, {"num": 50, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Juntar e avaliar ideias e sugestões que são importantes para o corpo de Cristo."}, {"num": 51, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Ser chamado/a para tarefas de liderança."}, {"num": 52, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Colocar-me à disposição em situações em que a fé dependa de sacrifícios pessoais."}, {"num": 53, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Ter contato com pessoas que foram negligenciadas ou abandonadas pela sociedade."}, {"num": 54, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Ter a experiência de ser usado por Deus para a realização de milagres e maravilhas."}, {"num": 55, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Trabalhar na fundação de novas igrejas contribuindo para a salvação de pessoas que, de outra forma, não seriam alcançadas."}, {"num": 56, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Acompanhar cristãos para ajudá-los no seu crescimento espiritual."}, {"num": 57, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Esclarecer outros cristãos sobre qual é a vontade de Deus em uma determinada situação."}, {"num": 58, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Ser chamado/a quando há necessidade de serem realizadas tarefas bem práticas na igreja."}, {"num": 59, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Servir a Deus com a música."}, {"num": 60, "bloco": 2, "bloco_titulo": "Tenho feito...", "texto": "Expressar as minhas ideias de forma criativa e artística (dança, teatro, cerâmica etc.)."}, {"num": 61, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...desenvolver planos que contribuíram para que o trabalho na Igreja fosse feito de forma mais eficaz."}, {"num": 62, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...perceber que pessoas de outras culturas se sentiram bem com minha presença."}, {"num": 63, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...perceber que como solteiro(a) tenho mais energias para trabalhar para Deus. (Se você é casado(a) assinale a coluna da direita)"}, {"num": 64, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...reconhecer falsos motivos por trás de palavras aparentemente muito espirituais de outras pessoas."}, {"num": 65, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...perceber que Deus me usou para levar pessoas a Jesus."}, {"num": 66, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...notar que outras pessoas receberam conforto por meio da minha ajuda."}, {"num": 67, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ver que outros me consideram um/a 'sonhador/a' porque insisto em investir a minha vida em objetivos considerados 'utópicos'."}, {"num": 68, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ajudar outras pessoas por meio de uma oferta considerável do meu dinheiro."}, {"num": 69, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ver pessoas sendo libertas de opressões demoníacas por meio das minhas orações."}, {"num": 70, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ver como Deus curou por meio das minhas orações pessoas que estavam fisicamente ou emocionalmente doentes."}, {"num": 71, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ter a confirmação de que consegui passar-lhes o meu conhecimento de uma forma melhor que a maioria das pessoas."}, {"num": 72, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...orar a Deus em uma língua que me era desconhecida."}, {"num": 73, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...pessoas me pedirem ajuda em um problema complicado e eu ter contribuído para a solução."}, {"num": 74, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ter acesso mais fácil a pessoas pobres porque levo um estilo de vida mais simples."}, {"num": 75, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...poder ajudar pessoas com a habilidade das minhas mãos."}, {"num": 76, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ver pessoas em posição de liderança fazerem melhor o seu trabalho porque realizei trabalhos que eram tarefas delas."}, {"num": 77, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...notar que as pessoas se encontram mais frequentemente na minha casa porque se sentem melhor aqui do que em outros lugares."}, {"num": 78, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...notar a intervenção concreta de Deus quando orei especificamente por algum motivo."}, {"num": 79, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ver que a minha interpretação das línguas foi coerente."}, {"num": 80, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ser o(a) primeiro/a a dar sugestões que mais tarde foram muito úteis."}, {"num": 81, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...poder incentivar outros cristãos na realização de determinados objetivos."}, {"num": 82, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ver como outras pessoas foram fortalecidas por meio do meu sofrimento."}, {"num": 83, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ajudar pessoas que estavam em necessidade."}, {"num": 84, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ser usado por Deus como instrumento para realizar sinais e milagres."}, {"num": 85, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ver líderes de outras igrejas aceitando e colocando em prática as minhas sugestões."}, {"num": 86, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ajudar cristãos a crescer na fé por meio do meu acompanhamento pessoal e demorado."}, {"num": 87, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...receber a confirmação de cristãos de que a palavra que lhes dei foi uma mensagem de Deus."}, {"num": 88, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...perceber antes de outras pessoas e realizar as tarefas na Igreja."}, {"num": 89, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...ver as pessoas ouvindo atentamente quando uso as minhas habilidades musicais."}, {"num": 90, "bloco": 3, "bloco_titulo": "Tive a experiência de...", "texto": "...usar, para a glória de Deus, as minhas habilidades criativas (escrever, desenhar, teatro etc.)."}, {"num": 91, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Planejo o meu dia e deixo pouca coisa acontecer por acaso."}, {"num": 92, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Tenho prazer em aprender sobre outras culturas."}, {"num": 93, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Eu me identifico perfeitamente com as palavras de Paulo, quando ele diz que outros deveriam permanecer solteiros como ele. (Se casado(a) assinale a coluna da direita)"}, {"num": 94, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Fico profundamente perturbado quando alguém diz algo correto, mas com as motivações erradas."}, {"num": 95, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Considero um grande problema o fato de muitos cristãos não falarem da sua fé em Jesus."}, {"num": 96, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Quando pessoas me contam os seus problemas, consigo sentir melhor as suas dificuldades do que outras pessoas."}, {"num": 97, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Para mim, não há dúvidas de que Deus cumpre as suas promessas, mesmo quando as evidências dizem o contrário."}, {"num": 98, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Sinto-me tocado/a quando ouço sobre necessidades financeiras de outras pessoas."}, {"num": 99, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Perturba-me a constatação de que muitas pessoas agem como se não existissem demônios."}, {"num": 100, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Fico mais incomodado que outros cristãos com o fato de que se ora tão pouco pelos doentes em muitas igrejas."}, {"num": 101, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Sofro com o fato de que tão poucos cristãos conseguem transmitir os seus conhecimentos de forma ilustrativa, interessante e eficiente."}, {"num": 102, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Sinto-me bem em grupos nos quais se ora em línguas."}, {"num": 103, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Tenho prazer em ajudar pessoas a encontrar soluções para os seus problemas."}, {"num": 104, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Fico perturbado pelo padrão de vida tão elevado de muitos cristãos."}, {"num": 105, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Não consigo ver construções, aparelhos, roupas etc. em mau estado de conservação."}, {"num": 106, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Fico satisfeito(a) realizando tarefas que, para os outros, não são agradáveis."}, {"num": 107, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Tenho alegria em receber visitas inesperadas, mesmo quando a minha casa ou o meu quarto não está bem arrumado."}, {"num": 108, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Levo os pedidos de oração de outras pessoas muito a sério e oro por elas regularmente."}, {"num": 109, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Quando alguém fala em línguas, oro para que Deus me dê a interpretação."}, {"num": 110, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Ocupo-me constantemente com verdades bíblicas e com o seu significado para o dia a dia."}, {"num": 111, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Em um grupo sem líder eu tomo a iniciativa."}, {"num": 112, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Relatos de mártires cristãos me fascinam."}, {"num": 113, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Quando vejo uma necessidade, quero ajudar imediatamente."}, {"num": 114, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Oro para que Deus faça sinais e milagres por meu intermédio como acontecia na época da Igreja Primitiva."}, {"num": 115, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Sinto mais do que outros cristãos a necessidade de promover unidade entre as diferentes igrejas."}, {"num": 116, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Estou perturbado(a) com o fato de que muitos cristãos recebem um acompanhamento tão precário na sua vida pessoal e espiritual."}, {"num": 117, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Oro para que Deus me dê mensagens para outros cristãos com mais regularidade do que aconteceu até agora."}, {"num": 118, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Noto quando outras pessoas estão precisando de ajuda prática e estou disposto/a a prestá-la."}, {"num": 119, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Entristeço-me quando, na Igreja, se dá pouco valor para a qualidade da música."}, {"num": 120, "bloco": 4, "bloco_titulo": "Para mim...", "texto": "Considero importante para os cristãos se engajarem na preservação e no embelezamento do meio-ambiente em que vivem."}, {"num": 121, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...desenvolver, por conta própria, projetos que envolvam negociações e organização."}, {"num": 122, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...fazer contato com pessoas que têm um estilo de vida totalmente diferente do meu."}, {"num": 123, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...abrir mão de constituir família. (Se você é casado(a) assinale a coluna da direita)"}, {"num": 124, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...discernir se as palavras de uma pessoa são de origem divina, humana ou satânica."}, {"num": 125, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...perceber o momento em que uma pessoa está preparada para aceitar o evangelho."}, {"num": 126, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...aprofundar, em pouco tempo, uma conversa com pessoas que eu não conhecia antes."}, {"num": 127, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...orar e trabalhar por coisas que outros cristãos consideram impossíveis."}, {"num": 128, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...dar, regularmente, parte do meu dinheiro para o Reino de Deus."}, {"num": 129, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...perceber se há áreas na vida de uma pessoa que estão sob domínio demoníaco."}, {"num": 130, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...orar pessoal e concretamente pela cura de doentes."}, {"num": 131, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...transmitir verdades e conceitos de forma lógica, interessante e compreensível para os ouvintes."}, {"num": 132, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...transmitir uma mensagem de Deus (ou uma oração) a outros cristãos em forma de oração em línguas."}, {"num": 133, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...aplicar conhecimento teórico a uma situação concreta."}, {"num": 134, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...viver com um padrão de vida simples."}, {"num": 135, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...resolver problemas práticos que, normalmente, necessitariam do trabalho de um técnico especializado."}, {"num": 136, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...ajudar outros cristãos nas suas tarefas para que possam fazer melhor o seu trabalho."}, {"num": 137, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...transmitir a visitas desconhecidas a sensação de estarem em casa."}, {"num": 138, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...orar semanas ou meses seguidos por motivos bem definidos."}, {"num": 139, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...sentir o que Deus quer dizer quando ouço uma mensagem em línguas."}, {"num": 140, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...descobrir, formular e sistematizar fatos que são importantes para a saúde da igreja."}, {"num": 141, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...delegar tarefas a outras pessoas."}, {"num": 142, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...dispor-me a sofrer por Jesus."}, {"num": 143, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...expressar a pessoas em necessidade o quanto sofro com elas."}, {"num": 144, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...orar por sinais sobrenaturais e milagres."}, {"num": 145, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...aconselhar grupos e igrejas acerca de sua situação espiritual."}, {"num": 146, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...acompanhar pessoalmente um grupo de cristãos e me empenhar pela sua unidade."}, {"num": 147, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...receber orientações de Deus sobre o que é sua vontade em uma determinada situação."}, {"num": 148, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...aceitar tarefas que não são muito atraentes para outros."}, {"num": 149, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...aprender a tocar um instrumento musical."}, {"num": 150, "bloco": 5, "bloco_titulo": "Gostaria de...", "texto": "...colocar em prática formas criativas de comunicação (pintura, teatro, pantomima etc.)."}, {"num": 151, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...participar de treinamento que me ajude a melhorar as minhas habilidades de planejamento, organização e delegação de tarefas."}, {"num": 152, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...trabalhar em outro país ou cultura, se tivesse a oportunidade."}, {"num": 153, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...permanecer solteiro para melhor trabalhar para o Reino de Deus. (Se você é casado(a) assinale a coluna da direita)"}, {"num": 154, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...investir muito tempo advertindo pessoas de possíveis perigos espirituais."}, {"num": 155, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...participar de um treinamento em que se aprenda a levar pessoas a Jesus."}, {"num": 156, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...aprender mais sobre como ajudar pessoas por meio de aconselhamento espiritual e aceitar um desafio, mesmo que implicasse um alto risco."}, {"num": 157, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...apoiar regularmente com o meu dinheiro cristãos que estão realizando um trabalho digno."}, {"num": 158, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...colocar-me à disposição para a batalha espiritual contra demônios."}, {"num": 159, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...participar de um ministério de oração pelos doentes."}, {"num": 160, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...ler mais sobre comunicação para desenvolver a minha capacidade de ensino."}, {"num": 161, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...orar publicamente em línguas se Deus me der esse dom."}, {"num": 162, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...investir muito tempo aconselhando pessoas ou grupos para tomada de decisões importantes."}, {"num": 163, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...abrir mão de boa comida, casa confortável e roupas caras."}, {"num": 164, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...ajudar no conserto e manutenção de aparelhos ou dependências, se necessário."}, {"num": 165, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...aliviar a carga de irmãos que estão sobrecarregados com muitas atividades, fazendo tarefas que eles deveriam fazer."}, {"num": 166, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...compartilhar mais a minha casa com visitantes do que fiz até agora."}, {"num": 167, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...participar de um grupo que tem o ministério de oração por outras pessoas."}, {"num": 168, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...interpretar publicamente a oração em línguas de outras pessoas se Deus me der a interpretação."}, {"num": 169, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...investir muito tempo no desenvolvimento de novas ideias que contribuam para a Igreja de Jesus."}, {"num": 170, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...colocar-me à disposição para liderar um grupo grande de cristãos."}, {"num": 171, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...arriscar a minha vida, se isso for necessário, para o Reino de Deus."}, {"num": 172, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...participar de uma ação de Igreja que se dedica especialmente aos abandonados pela sociedade."}, {"num": 173, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...concentrar a minha oração em casos considerados humanamente perdidos."}, {"num": 174, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...intermediar situações de conflito entre igrejas."}, {"num": 175, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...assumir a responsabilidade por um grupo de cristãos."}, {"num": 176, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...transmitir mensagens, mesmo desagradáveis, a irmãos da Igreja."}, {"num": 177, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...investir o meu tempo com tarefas na Igreja que são mais urgentes."}, {"num": 178, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...participar de um evento de música na Igreja."}, {"num": 179, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...aprender a desenvolver habilidades artísticas para usá-las na Igreja."}, {"num": 180, "bloco": 6, "bloco_titulo": "Estaria disposto(a) a...", "texto": "...participar de um grupo em que somos ensinados a desenvolver habilidades artísticas para usar no serviço a Deus."}];
-const DONS_MAP = [{"id": 1, "nome": "Organização", "perguntas": [1, 31, 61, 91, 121, 151]}, {"id": 2, "nome": "Missionário", "perguntas": [2, 32, 62, 92, 122, 152]}, {"id": 3, "nome": "Celibato", "perguntas": [3, 33, 63, 93, 123, 153]}, {"id": 4, "nome": "Discernimento de Espíritos", "perguntas": [4, 34, 64, 94, 124, 154]}, {"id": 5, "nome": "Evangelismo", "perguntas": [5, 35, 65, 95, 125, 155]}, {"id": 6, "nome": "Aconselhamento (Exortação)", "perguntas": [6, 36, 66, 96, 126, 156]}, {"id": 7, "nome": "Fé", "perguntas": [7, 37, 67, 97, 127, 157]}, {"id": 8, "nome": "Contribuição (Generosidade)", "perguntas": [8, 38, 68, 98, 128, 158]}, {"id": 9, "nome": "Batalha Espiritual", "perguntas": [9, 39, 69, 99, 129, 159]}, {"id": 10, "nome": "Cura", "perguntas": [10, 40, 70, 100, 130, 160]}, {"id": 11, "nome": "Ensino", "perguntas": [11, 41, 71, 101, 131, 161]}, {"id": 12, "nome": "Línguas", "perguntas": [12, 42, 72, 102, 132, 162]}, {"id": 13, "nome": "Sabedoria", "perguntas": [13, 43, 73, 103, 133, 163]}, {"id": 14, "nome": "Estilo de Vida Simples", "perguntas": [14, 44, 74, 104, 134, 164]}, {"id": 15, "nome": "Habilidade Manual", "perguntas": [15, 45, 75, 105, 135, 165]}, {"id": 16, "nome": "Ajuda (Socorro)", "perguntas": [16, 46, 76, 106, 136, 166]}, {"id": 17, "nome": "Hospitalidade", "perguntas": [17, 47, 77, 107, 137, 167]}, {"id": 18, "nome": "Oração (Intercessão)", "perguntas": [18, 48, 78, 108, 138, 168]}, {"id": 19, "nome": "Interpretação de Línguas", "perguntas": [19, 49, 79, 109, 139, 169]}, {"id": 20, "nome": "Conhecimento", "perguntas": [20, 50, 80, 110, 140, 170]}, {"id": 21, "nome": "Liderança", "perguntas": [21, 51, 81, 111, 141, 171]}, {"id": 22, "nome": "Sofrimento (Martírio)", "perguntas": [22, 52, 82, 112, 142, 172]}, {"id": 23, "nome": "Misericórdia", "perguntas": [23, 53, 83, 113, 143, 173]}, {"id": 24, "nome": "Milagres", "perguntas": [24, 54, 84, 114, 144, 174]}, {"id": 25, "nome": "Apostolado", "perguntas": [25, 55, 85, 115, 145, 175]}, {"id": 26, "nome": "Pastoreio", "perguntas": [26, 56, 86, 116, 146, 176]}, {"id": 27, "nome": "Profecia", "perguntas": [27, 57, 87, 117, 147, 177]}, {"id": 28, "nome": "Serviço (Diaconia)", "perguntas": [28, 58, 88, 118, 148, 178]}, {"id": 29, "nome": "Música", "perguntas": [29, 59, 89, 119, 149, 179]}, {"id": 30, "nome": "Criatividade Artística", "perguntas": [30, 60, 90, 120, 150, 180]}];
-const DONS_DESC = {"1": {"versiculo": "1 Co 12:28; Lc 14:28", "descricao": "Capacidade de planejar, estruturar e coordenar pessoas e recursos para alcançar objetivos ministeriais com ordem e eficiência.", "redes": "Conselho, Administração, Planejamento de Cultos, MASD"}, "2": {"versiculo": "1 Co 9:19-23; At 13:2", "descricao": "Facilidade de adaptar-se e comunicar o Evangelho com amor em contextos culturais e geográficos diferentes.", "redes": "Missões, Evangelismo, Mãos Amigas"}, "3": {"versiculo": "1 Co 7:7-8; Mt 19:11", "descricao": "Graça de viver em solteirice santa e contentamento, dedicando tempo ao Reino de Deus sem impedimentos relacionais.", "redes": "Missões Integrais, Dedicação exclusiva ao Ministério"}, "4": {"versiculo": "1 Co 12:10; 1 Jo 4:1", "descricao": "Sensibilidade espiritual para distinguir entre a verdade de Deus, motivações humanas e influências demoníacas disfarçadas.", "redes": "Intercessão, Aconselhamento, Liderança de Célula"}, "5": {"versiculo": "Ef 4:11; At 8:26-40", "descricao": "Facilidade sobrenatural de compartilhar as Boas Novas com pessoas não-cristãs, despertando o desejo de se renderem a Jesus.", "redes": "Missões, Integração, Célula, Mãos Amigas"}, "6": {"versiculo": "Rm 12:8; Hb 10:24", "descricao": "Ministério da palavra de ânimo, consolo e confronto amoroso que move pessoas abatidas a retomarem a caminhada com Deus.", "redes": "Células, Discipulado, Cuidado Espiritual"}, "7": {"versiculo": "1 Co 12:9; Hb 11:1", "descricao": "Confiança inabalável no poder e nas promessas de Deus para realizar projetos que parecem impossíveis aos olhos humanos.", "redes": "Conselho, Intercessão, Liderança Estratégica"}, "8": {"versiculo": "Rm 12:8; 2 Co 8:1-5", "descricao": "Alegria e liberdade no desprendimento financeiro para ofertar com liberalidade na expansão do Reino de Deus.", "redes": "MASD, Apoio Financeiro, Missões"}, "9": {"versiculo": "Mc 16:17; Lc 10:17", "descricao": "Autoridade espiritual para discernir cadeias espirituais, quebrar opressões do inimigo e libertar cativos em nome de Jesus.", "redes": "Intercessão, Cuidado Espiritual, Retiro Legado"}, "10": {"versiculo": "1 Co 12:9; Tg 5:14", "descricao": "Instrumentalidade divina através da oração da fé pela recuperação física, emocional e espiritual de enfermos.", "redes": "Intercessão, Visitação, Culto de Oração"}, "11": {"versiculo": "Rm 12:7; 2 Tm 2:2", "descricao": "Didática bíblica e clareza para comunicar a verdade das Escrituras, ajudando a igreja a crescer na maturidade da fé.", "redes": "Educação Cristã, Cursos MMI/UDF, O Caminho, Discipulado"}, "12": {"versiculo": "1 Co 12:10; 1 Co 14:2", "descricao": "Expressão sobrenatural de oração e edificação pessoal no Espírito Santo, conectando o coração a Deus além do intelecto.", "redes": "Devocional Pessoal, Oração e Intercessão"}, "13": {"versiculo": "1 Co 12:8; Tg 3:13", "descricao": "Capacidade de enxergar o coração das situações complexas e aplicar o conselho bíblico certo para tomar decisões prudentes.", "redes": "Conselho da Igreja, Liderança de Redes, Mediação"}, "14": {"versiculo": "Fp 4:11-13; 1 Tm 6:6", "descricao": "Contentamento alegre com o básico e rejeição do consumismo, liberando recursos e tempo para investir no eterno.", "redes": "Missões, Mordomia Cristã, Ação Social"}, "15": {"versiculo": "Êx 31:1-6; At 9:36", "descricao": "Dom prático de construir, reparar e criar para glorificar a Deus no templo e na comunidade com mãos hábeis.", "redes": "Patrimônio, Cenografia, Eventos, Manutenção"}, "16": {"versiculo": "1 Co 12:28; Rm 16:1", "descricao": "Disposição silenciosa e fiel para apoiar líderes e ministérios nos bastidores, liberando outros para cumprirem sua vocação.", "redes": "Ministérios de Apoio, Diaconia, Recepção, Logística"}, "17": {"versiculo": "1 Pe 4:9; Rm 12:13", "descricao": "Graça acolhedora que transforma ambientes em refúgios calorosos, fazendo qualquer visitante se sentir amado e pertencente.", "redes": "Células (Anfitriões), Integração, Eventos"}, "18": {"versiculo": "Cl 4:12; 1 Tm 2:1", "descricao": "Fervor e constância extraordinários para permanecer em oração por horas, intercedendo pela igreja, pastores e causas perdidas.", "redes": "Intercessão, Culto de Oração, Cobertura Pastoral"}, "19": {"versiculo": "1 Co 12:10; 1 Co 14:13", "descricao": "Capacidade de traduzir a mensagem espiritual de uma oração em línguas para a língua comum, edificando a igreja.", "redes": "Culto de Oração, Vigílias"}, "20": {"versiculo": "1 Co 12:8; Cl 2:2-3", "descricao": "Capacidade de assimilar, relacionar e discernir verdades teológicas profundas para edificação de vidas.", "redes": "Teologia, Pesquisa Bíblica, Aconselhamento, Formação"}, "21": {"versiculo": "Rm 12:8; Hb 13:7", "descricao": "Habilidade de comunicar visão, mobilizar pessoas com entusiasmo e guiá-las em unidade para atingirem alvos santos.", "redes": "Liderança de Redes, Células, Conselho, Coordenação"}, "22": {"versiculo": "Fp 1:29; 1 Pe 4:12", "descricao": "Graça de suportar incompreensão, perseguição e dor por amor a Cristo e à Igreja com alegria e sem murmuração.", "redes": "Missões Difíceis, Intercessão Profunda"}, "23": {"versiculo": "Rm 12:8; Lc 10:33", "descricao": "Compaixão visceral e prática que se move em favor dos marginalizados, doentes e necessitados, transmitindo consolo de Cristo.", "redes": "MASD (Ação Social), Visitação, Acolhimento"}, "24": {"versiculo": "1 Co 12:10; Mc 16:17", "descricao": "Instrumentalidade divina onde Deus altera o curso natural dos acontecimentos para manifestar Sua glória e poder.", "redes": "Intercessão, Vigílias, Evangelismo de Poder"}, "25": {"versiculo": "1 Co 12:28; Ef 4:11", "descricao": "Visão pioneira de abrir novos trabalhos, desbravar campos espirituais e gerar paternidade ministerial sobre novas igrejas.", "redes": "Plantação de Igrejas, Multiplicação Celular"}, "26": {"versiculo": "Ef 4:11; 1 Pe 5:1-4", "descricao": "Amor protetor e perseverante para alimentar, guiar, corrigir com afeto e caminhar ao lado de um grupo a longo prazo.", "redes": "Liderança de Célula, Discipulado, Redes Ministeriais"}, "27": {"versiculo": "Rm 12:6; 1 Co 14:1,3", "descricao": "Comunicação ungida e corajosa da Palavra que confronta o pecado, edifica, exorta e consola a comunidade de fé.", "redes": "Pregar a Palavra, Alinhamento Ético, Intercessão"}, "28": {"versiculo": "Rm 12:7; Gl 6:10", "descricao": "Prontidão e coração humilde para executar qualquer tarefa prática com excelência, enxergando o serviço como culto a Deus.", "redes": "MASD, Diaconia, Infraestrutura, Apoio Geral"}, "29": {"versiculo": "1 Cr 16:41; Sl 150", "descricao": "Sensibilidade artística musical para tocar instrumentos ou cantar com unção, conduzindo a congregação à presença do Pai.", "redes": "Equipe de Louvor, Ministração Musical, Coral"}, "30": {"versiculo": "Êx 35:30-35; Sl 33:3", "descricao": "Talento criativo para comunicar as verdades eternas do Reino através de design, artes visuais, vídeos, escrita ou teatro.", "redes": "Comunicação, Mídia, Artes Visuais, Design"}};
+const REDES = ["Conselho","IPI KIDS","RISE UP","NEXT","LEGADO (Homens)","ESTER (Mulheres)","ONE (Casais)","MELHOR IDADE","Louvor e Música","Diaconia (MASD)","Intercessão","Educação Cristã","Comunicação","Células","Ainda não participo"];
+const CHAVE = "dons.v2";
+let D=null, estado={nome:"",zap:"",rede:"",respostas:{},atual:1};
+const $ = s => document.querySelector(s);
+const telas = {inicio:"#tela-inicio", bloco:"#tela-bloco", perguntas:"#tela-perguntas", resultado:"#tela-resultado"};
+const tela = id => { Object.entries(telas).forEach(([k,sel]) => $(sel).classList.toggle("oculto", k!==id)); window.scrollTo({top:0}); };
+const salvar = () => { try{ localStorage.setItem(CHAVE, JSON.stringify(estado)); }catch(e){} };
+const bloco = n => D.blocos[Math.floor((n-1)/30)];
 
-let current = 0;
-let answers = new Array(180).fill(null);
-let user = { name:'', phone:'', rede:'' };
-
-function startTest() {
-  const name = document.getElementById('user-name').value.trim();
-  if (!name) { alert('Por favor, informe seu nome.'); document.getElementById('user-name').focus(); return; }
-  user = { name, phone: document.getElementById('user-phone').value.trim(), rede: document.getElementById('user-rede').value };
-
-  document.getElementById('screen-intro').classList.add('hidden');
-  document.getElementById('screen-questions').classList.remove('hidden');
-  document.getElementById('header-step').textContent = 'Respondendo...';
-  renderQ();
+function montarInicio(){
+  $("#rede").innerHTML = REDES.map(r=>`<option>${r}</option>`).join("");
+  try{ const s=JSON.parse(localStorage.getItem(CHAVE)||"null"); if(s&&s.respostas) estado=s; }catch(e){}
+  if(estado.nome) $("#nome").value=estado.nome;
+  if(estado.zap) $("#zap").value=estado.zap;
+  if(estado.rede) $("#rede").value=estado.rede;
+  const r = Object.keys(estado.respostas).length;
+  if(r>0 && r<180) $("#btn-iniciar").textContent = `Continuar de onde parei (${r}/180) →`;
+  else if(r===180) $("#btn-iniciar").textContent = "Ver meu resultado →";
 }
-
-function renderQ() {
-  const q = PERGUNTAS[current];
-  const bloco = BLOCOS_DATA[q.bloco - 1];
-  
-  let formatted = `<div class="text-xs sm:text-sm font-bold text-orange uppercase tracking-wider mb-1">${bloco.titulo}</div>`;
-  if (bloco.subtitulo) {
-    formatted += `<div class="text-xs font-semibold text-slate-500 italic mb-2">${bloco.subtitulo}</div>`;
-  }
-  formatted += `<div class="text-base sm:text-lg font-bold text-slate-900 leading-snug"><span class="text-orange mr-1.5">${q.num}.</span>${q.texto.replace(/^\.\.\./, '').replace(/^\.\./, '')}</div>`;
-
-  document.getElementById('q-text').innerHTML = formatted;
-  document.getElementById('q-instrucao').textContent = '💡 ' + bloco.instrucao;
-  
-  const pct = Math.round(current / 180 * 100);
-  document.getElementById('progress-percent').textContent = pct + '%';
-  document.getElementById('progress-bar').style.width = pct + '%';
-  document.getElementById('progress-text').textContent = `Pergunta ${current+1} de 180`;
-  document.getElementById('bloco-label').textContent = `Bloco ${q.bloco} de 6`;
-  document.getElementById('bloco-titulo').textContent = bloco.titulo;
-
-  const container = document.getElementById('options-container');
-  container.innerHTML = '';
-  
-  bloco.opcoes.forEach(opt => {
-    const isChecked = (answers[current] === opt.val);
-    const div = document.createElement('div');
-    div.innerHTML = `
-      <input type="radio" name="answer" id="ans-${opt.val}" value="${opt.val}" class="hidden" onchange="enableNext()" ${isChecked ? 'checked' : ''}>
-      <label for="ans-${opt.val}" class="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-xl border-2 border-slate-200 cursor-pointer hover:bg-slate-50 transition text-center h-full ${isChecked ? 'border-orange bg-amber-50 font-bold shadow-sm' : ''}">
-        <span class="text-xs sm:text-sm font-bold text-slate-800 leading-tight">${opt.label}</span>
-        <span class="text-[9px] text-slate-500 mt-1">(${opt.desc})</span>
-      </label>
-    `;
-    container.appendChild(div);
-  });
-
-  if (answers[current] !== null) { enableBtn(true); } else { enableBtn(false); }
-
-  document.getElementById('btn-prev').classList.toggle('invisible', current === 0);
-  document.getElementById('btn-next').textContent = current === 179 ? 'Ver Resultados' : 'Próxima →';
+function iniciar(){
+  const nome=$("#nome").value.trim();
+  if(nome.length<3){ $("#nome").focus(); $("#nome").style.borderColor="var(--laranja)"; return; }
+  estado.nome=nome; estado.zap=$("#zap").value.trim(); estado.rede=$("#rede").value; salvar();
+  const r=Object.keys(estado.respostas).length;
+  if(r===180) return mostrarResultado();
+  estado.atual = r ? Math.min(r+1,180) : 1;
+  (estado.atual%30===1) ? telaBloco(bloco(estado.atual)) : mostrarPergunta();
 }
-
-function enableNext() {
-  const sel = document.querySelector('input[name="answer"]:checked');
-  if (sel) { 
-    answers[current] = parseInt(sel.value); 
-    enableBtn(true);
-    document.querySelectorAll('#options-container label').forEach(l => {
-      l.classList.remove('border-orange', 'bg-amber-50', 'font-bold', 'shadow-sm');
-    });
-    const lbl = document.querySelector(`label[for="${sel.id}"]`);
-    if (lbl) {
-      lbl.classList.add('border-orange', 'bg-amber-50', 'font-bold', 'shadow-sm');
-    }
-  }
+function telaBloco(b){
+  $("#bl-num").textContent=`Parte ${b.id} de 6`;
+  $("#bl-titulo").textContent=`${b.titulo} ${b.subtitulo}`;
+  $("#bl-instrucao").textContent=b.instrucao;
+  $("#etapa").textContent=`Parte ${b.id} de 6`;
+  tela("bloco");
 }
-
-function enableBtn(on) {
-  const b = document.getElementById('btn-next');
-  b.disabled = !on;
-  b.classList.toggle('opacity-50', !on);
-  b.classList.toggle('cursor-not-allowed', !on);
+function mostrarPergunta(){
+  const n=estado.atual, q=D.perguntas[n-1], b=bloco(n);
+  $("#q-bloco").textContent=`Parte ${b.id} de 6`;
+  $("#q-contador").textContent=`afirmação ${n} de 180`;
+  $("#q-barra").style.width=(n/180*100)+"%";
+  $("#q-enunciado").textContent=`${b.titulo} ${b.subtitulo}`;
+  $("#q-texto").textContent=q.texto;
+  const marcada=estado.respostas[n];
+  $("#q-opcoes").innerHTML=b.opcoes.map((o,i)=>`<button class="op${marcada===o.val?" sel":""}" data-val="${o.val}"><b>${i+1}</b><span>${o.label}</span></button>`).join("");
+  $("#q-opcoes").querySelectorAll(".op").forEach(el=>el.onclick=()=>responder(+el.dataset.val));
+  $("#btn-voltar").style.visibility = n>1 ? "visible":"hidden";
+  $("#etapa").textContent=`${n}/180`;
+  tela("perguntas");
 }
-
-function nextQuestion() { 
-  if (answers[current] === null) return; 
-  if (current < 179) { 
-    current++; 
-    renderQ(); 
-    window.scrollTo({top:0, behavior:'smooth'}); 
-  } else { 
-    showResults(); 
-  } 
+function responder(val){
+  const n=estado.atual; estado.respostas[n]=val; salvar();
+  if(n>=180) return mostrarResultado();
+  estado.atual=n+1;
+  (estado.atual%30===1) ? telaBloco(bloco(estado.atual)) : mostrarPergunta();
 }
-
-function prevQuestion() { 
-  if (current > 0) { 
-    current--; 
-    renderQ(); 
-    window.scrollTo({top:0, behavior:'smooth'}); 
-  } 
+function voltar(){ if(estado.atual>1){ estado.atual--; mostrarPergunta(); } }
+function calcular(){
+  return D.dons.map(d=>({...d,
+    totalA: d.perguntas.reduce((s,n)=>s+(estado.respostas[n]||0),0),
+    totalB: d.perguntas.filter((_,i)=>D.blocos[i].parteB).reduce((s,n)=>s+(estado.respostas[n]||0),0)}));
 }
-
-function calcScores() {
-  return DONS_MAP.map(don => {
-    const totalA = don.perguntas.reduce((s, pn) => s + (answers[pn-1] || 0), 0);
-    // Total B (oficial): colunas CINZAS = partes 2, 4 e 6 (indices 1, 3 e 5) -> 0 a 12 pontos
-    const totalB = [1, 3, 5].reduce((s, b) => { const idx = don.perguntas[b]; return s + (answers[idx-1] || 0); }, 0);
-    return { ...don, totalA, totalB };
-  });
+function cartaoDom(d,tipo){
+  const pts = tipo==="manifesto"?d.totalA:d.totalB, max = tipo==="manifesto"?24:12;
+  const cor = tipo==="manifesto"?"var(--verde-3)":"var(--laranja)";
+  return `<div class="dom"><h4>${d.nome}</h4><div class="v">${d.versiculo}</div>
+    <div class="pontos"><b style="color:${cor}">${pts}</b><span>de ${max} pontos</span></div>
+    <div class="mini-barra"><i style="width:${pts/max*100}%;background:${cor}"></i></div>
+    <p>${d.descricao}</p>
+    ${d.redes?`<p style="margin-top:8px"><b>Onde servir:</b> ${d.redes}</p>`:""}
+    ${d.perigo?`<p style="margin-top:6px"><b>Atenção:</b> ${d.perigo}</p>`:""}</div>`;
 }
-
-function showResults() {
-  document.getElementById('screen-questions').classList.add('hidden');
-  document.getElementById('screen-results').classList.remove('hidden');
-  document.getElementById('header-step').textContent = 'Resultado';
-  document.getElementById('res-name').textContent = user.name;
-  document.getElementById('res-rede').textContent = user.rede;
-
-  const scores = calcScores();
-  const byA = [...scores].sort((a,b) => b.totalA - a.totalA);
-  const manifestos = byA.slice(0, 5);
-  const latentes = [...scores].sort((a,b) => b.totalB - a.totalB).slice(0, 5);
-
-  const renderCard = (d, tipo) => {
-    const desc = DONS_DESC[d.id] || {};
-    const pts = tipo === 'manifesto' ? d.totalA : d.totalB;
-    const max = tipo === 'manifesto' ? 24 : 12;
-    const pct = Math.round(pts / max * 100);
-    const color = tipo === 'manifesto' ? '#173627' : '#e06d10';
-    const bg = tipo === 'manifesto' ? 'bg-emerald-50 border-emerald-200' : 'bg-amber-50 border-amber-200';
-    return `<div class="${bg} border rounded-xl p-4 flex flex-col gap-2">
-      <div class="flex justify-between items-start">
-        <h4 class="font-bold text-slate-900 text-sm">${d.nome}</h4>
-        <span class="text-white text-[10px] font-extrabold px-2 py-0.5 rounded-full" style="background:${color}">${pts} / ${max} pts</span>
-      </div>
-      <div class="w-full bg-slate-200 rounded-full h-1.5">
-        <div class="h-1.5 rounded-full" style="width:${pct}%;background:${color}"></div>
-      </div>
-      <p class="text-[10px] font-semibold" style="color:${color}">📖 ${desc.versiculo||''}</p>
-      <p class="text-xs text-slate-700 leading-relaxed">${desc.descricao||''}</p>
-      <div class="pt-2 border-t border-slate-200 text-[10px]">
-        <strong style="color:${color}">Onde servir:</strong> <span class="text-slate-600">${desc.redes||''}</span>
-      </div>
-    </div>`;
+function mostrarResultado(){
+  const s=calcular();
+  const manifestos=[...s].sort((a,b)=>b.totalA-a.totalA||a.id-b.id).slice(0,5);
+  const latentes=[...s].sort((a,b)=>b.totalB-a.totalB||a.id-b.id).slice(0,5);
+  $("#r-nome").textContent=estado.nome;
+  $("#r-sub").textContent=`${estado.rede||"Sem rede informada"} · ${new Date().toLocaleDateString("pt-BR")} · 180 afirmações respondidas`;
+  $("#r-manifestos").innerHTML=manifestos.map(d=>cartaoDom(d,"manifesto")).join("");
+  $("#r-latentes").innerHTML=latentes.map(d=>cartaoDom(d,"latente")).join("");
+  $("#r-todos").innerHTML=[...s].sort((a,b)=>b.totalA-a.totalA).map(d=>
+    `<div class="linha30"><div class="t"><span>${d.nome}</span><span class="b"><i style="width:${d.totalA/24*100}%"></i></span></div><div class="mini" style="text-align:right">${d.totalA}/24</div></div>`).join("");
+  $("#etapa").textContent="Resultado";
+  const resumo=`*Teste dos Dons — ${estado.nome}*\n\n*Dons Manifestos:*\n`+manifestos.map((d,i)=>`${i+1}. ${d.nome} (${d.totalA}/24)`).join("\n")
+    +`\n\n*Dons Latentes:*\n`+latentes.map((d,i)=>`${i+1}. ${d.nome} (${d.totalB}/12)`).join("\n")+`\n\nIPI O Caminho · O Caminho do Servo`;
+  $("#btn-zap").onclick=()=>window.open("https://wa.me/?text="+encodeURIComponent(resumo),"_blank");
+  $("#btn-copiar").onclick=async()=>{try{await navigator.clipboard.writeText(resumo);$("#btn-copiar").textContent="✓ Copiado";setTimeout(()=>$("#btn-copiar").textContent="📋 Copiar resumo",1800);}catch(e){}};
+  $("#btn-json").onclick=()=>{
+    const dados={nome:estado.nome,whatsapp:estado.zap,rede:estado.rede,data:new Date().toISOString(),respostas:estado.respostas,
+      manifestos:manifestos.map(d=>({dom:d.nome,pontos:d.totalA})),latentes:latentes.map(d=>({dom:d.nome,pontos:d.totalB}))};
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(new Blob([JSON.stringify(dados,null,2)],{type:"application/json"}));
+    a.download=`dons-${estado.nome.toLowerCase().replace(/\s+/g,"-")}.json`; a.click();
   };
-
-  document.getElementById('manifestos').innerHTML = manifestos.map(d => renderCard(d,'manifesto')).join('');
-  document.getElementById('latentes').innerHTML = latentes.map(d => renderCard(d,'latente')).join('');
-
-  const ctx = document.getElementById('chartDons').getContext('2d');
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: byA.map(d => d.nome.length > 18 ? d.nome.substring(0,16)+'…' : d.nome),
-      datasets: [{
-        data: byA.map(d => d.totalA),
-        backgroundColor: byA.map((d,i) => i < 5 ? '#173627' : i < 10 ? '#e06d10' : '#cbd5e1'),
-        borderRadius: 3
-      }]
-    },
-    options: { 
-      responsive: true, 
-      maintainAspectRatio: false,
-      plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => ` ${ctx.raw} / 24 pts` } } },
-      scales: { y: { beginAtZero: true, max: 24, ticks: { stepSize: 4 } }, x: { ticks: { font: { size: 8 }, maxRotation: 70, minRotation: 50 } } }
-    }
-  });
-  window.scrollTo({top: 0, behavior: 'smooth'});
+  $("#btn-refazer").onclick=()=>{ if(confirm("Apagar as respostas e começar de novo?")){ localStorage.removeItem(CHAVE); location.reload(); } };
+  tela("resultado");
 }
-
-function shareWhatsApp() {
-  const scores = calcScores().sort((a,b) => b.totalA - a.totalA);
-  const top5 = scores.slice(0,5).map((d,i) => `${i+1}. *${d.nome}* (${d.totalA}/24 pts)`).join('\n');
-  const lat5 = scores.filter(d=>!scores.slice(0,5).some(m=>m.id===d.id)).slice(0,5).map((d,i) => `${i+1}. *${d.nome}* (${d.totalB}/8 pts)`).join('\n');
-  const msg = `*TESTE DOS DONS — IPI O CAMINHO*\n👤 *Nome:* ${user.name}\n🏛️ *Rede:* ${user.rede}\n\n🌟 *DONS MANIFESTOS (Top 5):*\n${top5}\n\n🌱 *DONS LATENTES (Potencial):*\n${lat5}\n\n_Questionário oficial de 180 afirmações (Christian A. Schwarz) · O Caminho do Servo · IPI Arapongas-PR_`;
-  window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
-}
+document.addEventListener("keydown",e=>{
+  if($("#tela-perguntas").classList.contains("oculto")) return;
+  if(e.key>="1"&&e.key<="5"){ responder(bloco(estado.atual).opcoes[+e.key-1].val); }
+  if(e.key==="Backspace"||e.key==="ArrowLeft"){ e.preventDefault(); voltar(); }
+});
+fetch("dados.json").then(r=>r.json()).then(d=>{
+  D=d; montarInicio();
+  $("#btn-iniciar").onclick=iniciar; $("#btn-bloco").onclick=mostrarPergunta; $("#btn-voltar").onclick=voltar;
+}).catch(()=>{ $("#tela-inicio").innerHTML="<main><div class='cartao mt'><h2 class='titulo'>Não consegui carregar as perguntas</h2><p class='sub'>Atualize a página (F5). Se continuar, avise a secretaria.</p></div></main>"; });
 </script>
 </body>
 </html>
