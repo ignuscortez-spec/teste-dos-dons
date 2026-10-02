@@ -219,13 +219,10 @@
       <div class="lista30" id="r-todos"></div>
 
       <div class="acoes nao-imprime">
-        <button class="btn sec" onclick="window.print()">🖨️ Salvar em PDF</button>
         <button class="btn sec" id="btn-zap">💬 Enviar no WhatsApp</button>
-        <button class="btn sec" id="btn-copiar">📋 Copiar resumo</button>
-        <button class="btn sec" id="btn-json">⤓ Baixar respostas</button>
-        <button class="btn sec" id="btn-enviar">📨 Enviar para a liderança</button>
-        <button class="btn sec" id="btn-refazer">↻ Refazer o teste</button>
+        <button class="btn sec" onclick="window.print()">🖨️ Salvar em PDF ou imprimir</button>
       </div>
+      <p id="status-envio" class="mini nao-imprime" style="margin-top:12px">enviando o resultado para a liderança…</p>
       <div class="nota" style="margin-top:24px">🧭 <span>O resultado é uma <b>bússola</b>, não um diagnóstico. Converse com a liderança da sua rede: dom se reconhece servindo, no corpo da igreja.</span></div>
     </div>
   </section>
@@ -328,46 +325,7 @@ function mostrarResultado(){
   $("#etapa").textContent="Resultado";
   const resumo=`*Teste dos Dons — ${estado.nome}*\n\n*Dons Manifestos:*\n`+manifestos.map((d,i)=>`${i+1}. ${d.nome} (${d.totalA}/24)`).join("\n")
     +`\n\n*Dons Latentes:*\n`+latentes.map((d,i)=>`${i+1}. ${d.nome} (${d.totalB}/12)`).join("\n")+`\n\nIPI O Caminho · O Caminho do Servo`;
-  $("#btn-enviar").onclick=()=>enviarParaLideranca(manifestos,latentes,s,true);
   $("#btn-zap").onclick=()=>window.open("https://wa.me/?text="+encodeURIComponent(resumo),"_blank");
-  $("#btn-copiar").onclick=async()=>{try{await navigator.clipboard.writeText(resumo);$("#btn-copiar").textContent="✓ Copiado";setTimeout(()=>$("#btn-copiar").textContent="📋 Copiar resumo",1800);}catch(e){}};
-  $("#btn-json").onclick=()=>{
-    const dados={nome:estado.nome,whatsapp:estado.zap,rede:estado.rede,data:new Date().toISOString(),respostas:estado.respostas,
-      manifestos:manifestos.map(d=>({dom:d.nome,pontos:d.totalA})),latentes:latentes.map(d=>({dom:d.nome,pontos:d.totalB}))};
-    const a=document.createElement("a");
-    a.href=URL.createObjectURL(new Blob([JSON.stringify(dados,null,2)],{type:"application/json"}));
-    a.download=`dons-${estado.nome.toLowerCase().replace(/\s+/g,"-")}.json`; a.click();
-  };
-  enviarParaLideranca(manifestos,latentes,s);
-  $("#btn-refazer").onclick=()=>{ if(confirm("Apagar as respostas e começar de novo?")){ localStorage.removeItem(CHAVE); location.reload(); } };
-  tela("resultado");
-}
-async function enviarParaLideranca(manifestos,latentes,todos,manual){
-  const bt=$("#btn-enviar");
-  if(estado.enviado && !manual){ if(bt){ bt.textContent="✓ Resultado enviado à liderança"; bt.disabled=true; } return; }
-  if(bt){ bt.textContent="enviando…"; bt.disabled=true; }
-  try{
-    const r = await fetch(COLETOR,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
-      nome:estado.nome, whatsapp:estado.zap, rede:estado.rede,
-      manifestos:manifestos.map(d=>({dom:d.nome,pontos:d.totalA})),
-      latentes:latentes.map(d=>({dom:d.nome,pontos:d.totalB})),
-      todos:[...todos].sort((a,b)=>a.id-b.id).map(d=>d.totalA),
-      respostas:Array.from({length:180},(_,i)=>estado.respostas[i+1]??"")})});
-    if(!r.ok) throw new Error(r.status);
-    estado.enviado=true; salvar();
-    if(bt){ bt.textContent="✓ Resultado enviado à liderança"; }
-  }catch(e){
-    if(bt){ bt.textContent="⚠ Não consegui enviar — tentar de novo"; bt.disabled=false;
-      bt.onclick=()=>enviarParaLideranca(manifestos,latentes,todos,true); }
-  }
-}
-document.addEventListener("keydown",e=>{
-  if($("#tela-perguntas").classList.contains("oculto")) return;
-  if(e.key>="1"&&e.key<="5"){ responder(bloco(estado.atual).opcoes[+e.key-1].val); }
-  if(e.key==="Backspace"||e.key==="ArrowLeft"){ e.preventDefault(); voltar(); }
-});
-fetch("dados.json").then(r=>r.json()).then(d=>{
-  D=d; montarInicio();
   $("#btn-iniciar").onclick=iniciar; $("#btn-bloco").onclick=mostrarPergunta; $("#btn-voltar").onclick=voltar;
 }).catch(()=>{ $("#tela-inicio").innerHTML="<main><div class='cartao mt'><h2 class='titulo'>Não consegui carregar as perguntas</h2><p class='sub'>Atualize a página (F5). Se continuar, avise a secretaria.</p></div></main>"; });
 </script>
