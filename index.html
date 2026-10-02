@@ -326,6 +326,39 @@ function mostrarResultado(){
   const resumo=`*Teste dos Dons — ${estado.nome}*\n\n*Dons Manifestos:*\n`+manifestos.map((d,i)=>`${i+1}. ${d.nome} (${d.totalA}/24)`).join("\n")
     +`\n\n*Dons Latentes:*\n`+latentes.map((d,i)=>`${i+1}. ${d.nome} (${d.totalB}/12)`).join("\n")+`\n\nIPI O Caminho · O Caminho do Servo`;
   $("#btn-zap").onclick=()=>window.open("https://wa.me/?text="+encodeURIComponent(resumo),"_blank");
+  enviarParaLideranca(manifestos,latentes,s);
+  tela("resultado");
+}
+
+async function enviarParaLideranca(manifestos,latentes,todos,manual){
+  const av=$("#status-envio");
+  if(estado.enviado && !manual){ if(av) av.textContent="✓ Resultado enviado à liderança."; return; }
+  if(av) av.textContent="enviando o resultado para a liderança…";
+  try{
+    const r = await fetch(COLETOR,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+      nome:estado.nome, whatsapp:estado.zap, rede:estado.rede,
+      manifestos:manifestos.map(d=>({dom:d.nome,pontos:d.totalA})),
+      latentes:latentes.map(d=>({dom:d.nome,pontos:d.totalB})),
+      todos:[...todos].sort((a,b)=>a.id-b.id).map(d=>d.totalA),
+      respostas:Array.from({length:180},(_,i)=>estado.respostas[i+1]??"")})});
+    if(!r.ok) throw new Error(r.status);
+    estado.enviado=true; salvar();
+    if(av) av.textContent="✓ Resultado enviado à liderança.";
+  }catch(e){
+    if(av){ av.innerHTML='⚠ Não consegui enviar agora. <a href="#" id="retentar">Tentar de novo</a>';
+      const a=document.getElementById("retentar");
+      if(a) a.onclick=(ev)=>{ ev.preventDefault(); enviarParaLideranca(manifestos,latentes,todos,true); }; }
+  }
+}
+
+document.addEventListener("keydown",e=>{
+  if($("#tela-perguntas").classList.contains("oculto")) return;
+  if(e.key>="1"&&e.key<="5"){ responder(bloco(estado.atual).opcoes[+e.key-1].val); }
+  if(e.key==="Backspace"||e.key==="ArrowLeft"){ e.preventDefault(); voltar(); }
+});
+
+fetch("dados.json").then(r=>r.json()).then(d=>{
+  D=d; montarInicio();
   $("#btn-iniciar").onclick=iniciar; $("#btn-bloco").onclick=mostrarPergunta; $("#btn-voltar").onclick=voltar;
 }).catch(()=>{ $("#tela-inicio").innerHTML="<main><div class='cartao mt'><h2 class='titulo'>Não consegui carregar as perguntas</h2><p class='sub'>Atualize a página (F5). Se continuar, avise a secretaria.</p></div></main>"; });
 </script>
