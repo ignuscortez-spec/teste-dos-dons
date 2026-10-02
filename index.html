@@ -156,14 +156,15 @@
         <h2 class="titulo">Vamos começar</h2>
         <p class="sub">Preencha seus dados para que a liderança possa conversar com você sobre o resultado.</p>
         <div class="grade g2" style="margin-bottom:16px">
-          <div><label for="nome">Nome completo *</label><input id="nome" autocomplete="name" placeholder="Seu nome completo"></div>
+          <div><label for="nome">Nome completo</label><input id="nome" autocomplete="name" placeholder="Seu nome completo"></div>
           <div><label for="zap">WhatsApp</label><input id="zap" inputmode="tel" placeholder="(43) 99999-0000"></div>
         </div>
         <div style="margin-bottom:22px"><label for="rede">Rede / Ministério</label><select id="rede"></select></div>
         <label style="display:flex;gap:10px;align-items:flex-start;font-size:13.5px;text-transform:none;letter-spacing:0;font-weight:400;color:var(--suave);margin:0 0 16px;cursor:pointer">
           <input type="checkbox" id="aceite" style="width:18px;height:18px;margin-top:2px;flex:0 0 auto">
-          <span>Autorizo a <b>IPI O Caminho</b> a guardar o meu resultado para que a liderança converse comigo sobre os meus dons. Os dados ficam com a igreja e não são usados para outra finalidade.</span>
+          <span><b style="color:var(--laranja)">Obrigatório.</b> Autorizo a <b>IPI O Caminho</b> a guardar o meu resultado para que a liderança converse comigo sobre os meus dons. Os dados ficam com a igreja e não são usados para outra finalidade.</span>
         </label>
+        <p id="aviso" class="oculto" style="margin:0 0 12px;font-size:14px;color:#b4530b;background:rgba(224,109,16,.1);border:1px solid rgba(224,109,16,.3);padding:11px 14px;border-radius:12px"></p>
         <button class="btn" id="btn-iniciar">Iniciar o teste →</button>
 
         <div class="passos">
@@ -246,6 +247,7 @@ const telas = {inicio:"#tela-inicio", bloco:"#tela-bloco", perguntas:"#tela-perg
 const tela = id => { Object.entries(telas).forEach(([k,sel]) => $(sel).classList.toggle("oculto", k!==id)); window.scrollTo({top:0}); };
 const salvar = () => { try{ localStorage.setItem(CHAVE, JSON.stringify(estado)); }catch(e){} };
 const bloco = n => D.blocos[Math.floor((n-1)/30)];
+function aviso(msg){ const e=$("#aviso"); e.textContent=msg; e.classList.remove("oculto"); setTimeout(()=>e.classList.add("oculto"),6000); }
 
 function montarInicio(){
   $("#rede").innerHTML = REDES.map(r=>`<option>${r}</option>`).join("");
@@ -260,7 +262,10 @@ function montarInicio(){
 }
 function iniciar(){
   const nome=$("#nome").value.trim();
-  if(nome.length<3){ $("#nome").focus(); $("#nome").style.borderColor="var(--laranja)"; return; }
+  if(nome.length<3){ $("#nome").focus(); $("#nome").style.borderColor="var(--laranja)"; aviso("Preencha o seu nome completo."); return; }
+  if(!$("#aceite").checked){ aviso("Para continuar, é preciso marcar a autorização acima."); $("#aceite").focus();
+    $("#aceite").parentElement.style.outline="2px solid var(--laranja)"; $("#aceite").parentElement.style.outlineOffset="6px";
+    $("#aceite").parentElement.style.borderRadius="10px"; return; }
   estado.nome=nome; estado.zap=$("#zap").value.trim(); estado.rede=$("#rede").value; estado.aceite=$("#aceite").checked; salvar();
   const r=Object.keys(estado.respostas).length;
   if(r===180) return mostrarResultado();
@@ -339,7 +344,6 @@ function mostrarResultado(){
 }
 async function enviarParaLideranca(manifestos,latentes,todos,manual){
   const bt=$("#btn-enviar");
-  if(!estado.aceite && !manual){ if(bt) bt.textContent="📨 Enviar para a liderança"; return; }
   if(estado.enviado && !manual){ if(bt){ bt.textContent="✓ Resultado enviado à liderança"; bt.disabled=true; } return; }
   if(bt){ bt.textContent="enviando…"; bt.disabled=true; }
   try{
@@ -347,7 +351,8 @@ async function enviarParaLideranca(manifestos,latentes,todos,manual){
       nome:estado.nome, whatsapp:estado.zap, rede:estado.rede,
       manifestos:manifestos.map(d=>({dom:d.nome,pontos:d.totalA})),
       latentes:latentes.map(d=>({dom:d.nome,pontos:d.totalB})),
-      todos:[...todos].sort((a,b)=>a.id-b.id).map(d=>d.totalA)})});
+      todos:[...todos].sort((a,b)=>a.id-b.id).map(d=>d.totalA),
+      respostas:Array.from({length:180},(_,i)=>estado.respostas[i+1]??"")})});
     if(!r.ok) throw new Error(r.status);
     estado.enviado=true; salvar();
     if(bt){ bt.textContent="✓ Resultado enviado à liderança"; }
