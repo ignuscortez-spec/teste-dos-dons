@@ -332,9 +332,12 @@ function mostrarResultado(){
   tela("resultado");
 }
 
+let enviando = false;   // trava contra clique repetido: ver corrige_duplicata.py
 async function enviarParaLideranca(manifestos,latentes,todos,manual){
   const av=$("#status-envio");
-  if(estado.enviado && !manual) return;
+  if(enviando) return;                  // ja tem um envio em voo neste instante
+  if(estado.enviado && !manual) return; // ja foi enviado antes
+  enviando = true;
 
   try{
     const r = await fetch(COLETOR,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
@@ -350,6 +353,8 @@ async function enviarParaLideranca(manifestos,latentes,todos,manual){
     if(av){ av.classList.remove("oculto"); av.innerHTML='⚠ Não consegui enviar o resultado para a liderança. <a href="#" id="retentar">Tentar de novo</a>';
       const a=document.getElementById("retentar");
       if(a) a.onclick=(ev)=>{ ev.preventDefault(); enviarParaLideranca(manifestos,latentes,todos,true); }; }
+  } finally {
+    enviando = false;
   }
 }
 
