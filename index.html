@@ -340,7 +340,7 @@ async function enviarParaLideranca(manifestos,latentes,todos,manual){
   enviando = true;
 
   try{
-    const r = await fetch(COLETOR,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({
+    const r = await fetch(COLETOR,{method:"POST",headers:{"Content-Type":"text/plain;charset=UTF-8"},body:JSON.stringify({
       nome:estado.nome, whatsapp:estado.zap, rede:estado.rede,
       manifestos:manifestos.map(d=>({dom:d.nome,pontos:d.totalA})),
       latentes:latentes.map(d=>({dom:d.nome,pontos:d.totalB})),
